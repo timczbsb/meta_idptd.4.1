@@ -1,6 +1,6 @@
 # Exercício 4.1 — API REST de uma aplicação de TODO list (POST/GET/PUT)
 
-**Aluno:** Seu Nome Completo Aqui  
+**Aluno:** Anderson  
 **Disciplina:** IDP-TD 2026  
 **Framework:** FastAPI + Uvicorn  
 

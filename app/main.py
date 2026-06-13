@@ -12,8 +12,8 @@ class TarefaInput(BaseModel):
 
 
 class TarefaUpdate(BaseModel):
-    titulo: str | None = None
-    concluida: bool | None = None
+    titulo: str
+    concluida: bool
 
 
 @app.get("/health")
@@ -21,7 +21,7 @@ def health():
     return {"status": "ok"}
 
 
-@app.post("/tarefas")
+@app.post("/tarefas", status_code=201)
 def criar(tarefa: TarefaInput):
     global next_id
     item = {"id": next_id, "titulo": tarefa.titulo, "concluida": False}
@@ -47,8 +47,6 @@ def atualizar(id: int, updates: TarefaUpdate):
     if id not in store:
         raise HTTPException(status_code=404, detail="tarefa não encontrada")
     item = store[id]
-    if updates.titulo is not None:
-        item["titulo"] = updates.titulo
-    if updates.concluida is not None:
-        item["concluida"] = updates.concluida
+    item["titulo"] = updates.titulo
+    item["concluida"] = updates.concluida
     return item
